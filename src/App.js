@@ -1,15 +1,15 @@
 import './main.css';
 
-function Header() {
+function Header(props) {
   return (
     <header>
-      <h1>WEB</h1>
-      <div>React</div>    
+      <h1>{ props.title }</h1>
+      <div>{ props.subject }</div>    
     </header>
   );
 }
 
-function TOC() {
+function TOC(props) {
   return (
     <nav>
       <ul>
@@ -21,11 +21,12 @@ function TOC() {
   );
 }
 
-function Content() {
+function Content(props) {
   return (
     <article>
+      <h3>{ props.title }</h3>
       <div>
-        안녕하세요.
+        { props.des }
       </div>
     </article>
   );
@@ -35,9 +36,9 @@ function Content() {
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Header title="WEB" subject="React"/>
       <TOC />
-      <Content />
+      <Content title="HTML" des="HTML is ..."/>
     </div>
   );
 }
