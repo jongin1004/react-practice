@@ -19,8 +19,7 @@ class App extends React.Component {
         {id: 2, title: "CSS", desc: "CSS IS ..."},
         {id: 3, title: "JAVASCRIPT", desc: "JAVASCRIPT IS ..."}
       ]
-    };
-    this.max_content_id = this.state.contents.length + 1;
+    };    
     this.onChangePage = this.onChangePage.bind(this);    
   }
 
@@ -43,8 +42,9 @@ class App extends React.Component {
       _article = <ReadContent title={_title} des={_desc}/>;
     } else if (this.state.mode === "create") {
       _article = <CreateContent onSubmit={function(_title, _desc) {
+        let max_content_id = this.state.contents.length + 1;
         let _content = this.state.contents.concat(
-          {id: this.max_content_id, title: _title, desc: _desc}
+          {id: max_content_id, title: _title, desc: _desc}
         );
         this.setState({
           contents: _content
