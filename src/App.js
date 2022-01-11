@@ -2,6 +2,7 @@ import React from 'react';
 import TOC from "./components/TOC";
 import ReadContent from "./components/ReadContent";
 import CreateContent from "./components/CreateContent";
+import UpdateContent from "./components/UpdateContent";
 import Header from "./components/Header";
 import Control from "./components/Control";
 import './main.css';
@@ -30,7 +31,7 @@ class App extends React.Component {
     });  
   }
 
-  render() {
+  getContent() {
     let _title, _desc, _article = null;
     if(this.state.mode === "welcome") {
       _title = this.state.welcome.title;
@@ -47,10 +48,29 @@ class App extends React.Component {
           {id: max_content_id, title: _title, desc: _desc}
         );
         this.setState({
-          contents: _content
+          contents: _content,
+          mode: "read",
+          selected_content_id: max_content_id -1 
         });
       }.bind(this)} title={_title} des={_desc}/>;
+    } else if (this.state.mode === "update") {
+      let _data = this.state.contents[this.state.selected_content_id];      
+      _article = <UpdateContent 
+        onSubmit={function(_id, _title, _desc) {
+          let _contents = Array.from(this.state.contents);
+          _contents[this.state.selected_content_id] = {id: _id, title: _title, desc: _desc}          
+          this.setState({
+            contents: _contents,
+            mode: 'read'
+          });
+        }.bind(this)}
+        data={_data}
+        />;
     }
+
+    return _article;
+  }
+  render() {    
 
     return (
       <div className="App">
@@ -68,7 +88,7 @@ class App extends React.Component {
         <Control onChangeMode={function(_mode) {
           this.setState({mode: _mode})
         }.bind(this)} />
-        {_article}
+        {this.getContent()}
       </div>
     );
   }
