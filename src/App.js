@@ -24,7 +24,7 @@ class App extends React.Component {
     this.onChangePage = this.onChangePage.bind(this);    
   }
 
-  onChangePage(id = null) {
+  onChangePage(id) {
     this.setState({
         mode: 'read',
         selected_content_id: id
@@ -86,7 +86,18 @@ class App extends React.Component {
           onChangePage = {this.onChangePage}
         />
         <Control onChangeMode={function(_mode) {
-          this.setState({mode: _mode})
+          if (_mode === 'delete') {
+            
+            let _contents = Array.from(this.state.contents);
+            _contents.splice(this.state.selected_content_id,1);            
+            this.setState({
+              selected_content_id: 0,
+              contents: _contents,
+              model: "welcome"
+            })
+          } else {
+            this.setState({mode: _mode})
+          }          
         }.bind(this)} />
         {this.getContent()}
       </div>

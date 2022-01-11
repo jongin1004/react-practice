@@ -14,8 +14,7 @@ class TOC extends React.Component {
     return true;
   }
 
-  render() {
-    console.log('yes');
+  render() {    
     let lists = [];
     let data = this.props.content;
     for (let i = 0; i < data.length; i++) {
