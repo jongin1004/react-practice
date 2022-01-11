@@ -1,7 +1,8 @@
 function TOC(props) {
   let lists = [];
-  for (let i = 0; i < props.content.length; i++) {
-    lists.push(<li key={props.content[i].id}><a href={"/content/"+props.content[i].id}>{props.content[i].title}</a></li>);
+  let data = props.content;
+  for (let i = 0; i < data.length; i++) {
+    lists.push(<li key={data[i].id}><a href={"/content/"+data[i].id}>{data[i].title}</a></li>);
   }
   return (
     <nav>
