@@ -1,9 +1,9 @@
 function Header(props) {
   return (
     <header>
-      <h1><a href="/" onClick={function(e){
-        console.log('안녕');
-        e.preventDefault();
+      <h1><a href="/" onClick={function(e){                
+        e.preventDefault();      
+        props.onChangePage();
         }}>{ props.title }</a></h1>
       <div>{ props.subject }</div>    
     </header>

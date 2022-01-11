@@ -16,7 +16,12 @@ class App extends React.Component {
         {id: 2, title: "CSS", desc: "CSS IS ..."},
         {id: 3, title: "JAVASCRIPT", desc: "JAVASCRIPT IS ..."}
       ]
-    };    
+    };
+    this.onChangePage = this.onChangePage.bind(this);    
+  }
+
+  onChangePage() {    
+    this.setState({mode: 'read'});
   }
 
   render() {
@@ -28,9 +33,14 @@ class App extends React.Component {
       _title = this.state.contents[0].title;
       _desc = this.state.contents[0].desc;
     }
+
     return (
       <div className="App">
-        <Header title={this.state.header.title} subject={this.state.header.subject}/>
+        <Header 
+          title={this.state.header.title} 
+          subject={this.state.header.subject}
+          onChangePage = {this.onChangePage}
+        />
         <TOC content={this.state.contents}/>
         <Content title={_title} des={_desc}/>
       </div>
