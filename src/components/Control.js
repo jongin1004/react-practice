@@ -1,20 +1,24 @@
-function Control(props) {
-  return (
-    <ul>
-        <li><a href="!#" onClick={function(e) {
-            e.preventDefault();
-            props.onChangeMode('create');
-        }}>create</a></li>
-        <li><a href="!#" onClick={function(e) {
-            e.preventDefault();
-            props.onChangeMode('update');
-        }}>update</a></li>
-        <li><input onClick={function(e) {
-            e.preventDefault();
-            props.onChangeMode('delete');
-        }} type="submit" value="delete" /></li>
-    </ul>
-  );
+import React from 'react';
+
+class Control extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onChangeMode = this.onChangeMode.bind(this);
+  }
+  onChangeMode(e) {
+    e.preventDefault();
+    this.props.onChangeMode(e.target.outerText);
+  }
+
+  render() {
+    return (
+      <ul>
+        <li><a href="!#" onClick={this.onChangeMode}>create</a></li>
+        <li><a href="!#" onClick={this.onChangeMode}>update</a></li>
+        <li><button onClick={this.onChangeMode} type="submit">delete</button></li>
+      </ul>
+    );
+  }
 }
 
 export default Control;

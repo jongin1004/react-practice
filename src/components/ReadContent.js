@@ -3,7 +3,7 @@ function ReadContent(props) {
     <article>
       <h3>{ props.title }</h3>
       <div>
-        { props.des }
+        { props.desc }
       </div>
     </article>
   );

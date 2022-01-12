@@ -4,7 +4,7 @@ function CreateContent(props) {
       <h1>Create</h1>
       <form onSubmit={function(e) {
           e.preventDefault();
-          props.onSubmit(
+          props.saveContent(
               e.target.title.value,
               e.target.desc.value
           );

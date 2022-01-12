@@ -4,9 +4,9 @@ class UpdateContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.data.id,
-      title: this.props.data.title,
-      des: this.props.data.desc
+      id: this.props.id,
+      title: this.props.title,
+      desc: this.props.desc
     }
 
     this.inputFormHandler = this.inputFormHandler.bind(this);
@@ -22,13 +22,13 @@ class UpdateContent extends React.Component {
         <h1>Update</h1>
         <form onSubmit={function(e) {        
             e.preventDefault();
-            this.props.onSubmit(
+            this.props.updateContent(
                 this.state.id,
                 this.state.title,
-                this.state.des
+                this.state.desc
             );
         }.bind(this)}>
-            <input type="hidden" name="id" value={this.state.id} />
+            {/* <input type="hidden" name="id" value={this.state.id} /> */}
             <p>
               <input 
                 type="text"
@@ -41,9 +41,9 @@ class UpdateContent extends React.Component {
             <p>
               <textarea 
                 onChange={this.inputFormHandler}
-                name="des" 
+                name="desc" 
                 placeholder="description"                 
-                value={this.state.des}
+                value={this.state.desc}
               ></textarea>
             </p>
             <input type="submit" value="제출" />
@@ -53,24 +53,5 @@ class UpdateContent extends React.Component {
   }
 }
 
-
-// function UpdateContent(props) {  
-//   return (
-//     <article>
-//       <h1>Update</h1>
-//       <form onSubmit={function(e) {        
-//           e.preventDefault();
-//           props.onSubmit(
-//               e.target.title.value,
-//               e.target.desc.value
-//           );
-//       }}>
-//           <p><input type="text" name="title" placeholder="title" value={props.title} /></p>
-//           <p><textarea name="desc" placeholder="description">{props.des}</textarea></p>
-//           <input type="submit" value="제출" />
-//       </form>
-//     </article>
-//   );
-// }
 
 export default UpdateContent;

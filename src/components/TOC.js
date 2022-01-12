@@ -22,10 +22,10 @@ class TOC extends React.Component {
         <li key={data[i].id}>
           <a 
             href={"/content/"+data[i].id}
-            onClick={function(id, e) {            
+            onClick={function(id, e) {
               e.preventDefault();
               this.props.onChangePage(id);
-            }.bind(this, data[i].id - 1)}
+            }.bind(this, data[i].id)}
           >
             {data[i].title}
           </a>
